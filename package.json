@@ -9,6 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7"
+    "bcrypt": "^3.0.7",
+    "chart.js": "^2.9.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongoose": "^5.7.12",
+    "nodemon": "^2.0.1",
+    "pug": "^2.0.4"
   }
 }
