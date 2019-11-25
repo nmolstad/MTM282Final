@@ -1,20 +1,21 @@
 {
-  "name": "final-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^3.0.7",
-    "chart.js": "^2.9.3",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "mongoose": "^5.7.12",
-    "nodemon": "^2.0.1",
-    "pug": "^2.0.4"
-  }
+    "name": "final-project",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^3.0.7",
+        "chart.js": "^2.9.3",
+        "express": "^4.17.1",
+        "express-session": "^1.17.0",
+        "mongoose": "^5.7.12",
+        "nodemon": "^2.0.1",
+        "pug": "^2.0.4"
+    }
 }
