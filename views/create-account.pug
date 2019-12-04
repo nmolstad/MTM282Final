@@ -15,7 +15,7 @@ block content
                 label(for="email" class="control-label")="Email"
                 i(class="bar")
             div(Class="form-group")
-                input(type="text" required id="age" autocomplete="off" name="age")
+                input(type="number" required id="age" autocomplete="off" name="age")
                 label(for="age" class="control-label")="Age"
                 i(class="bar")
             div(Class="form-group")
@@ -25,23 +25,26 @@ block content
             div(class="form-group")
                 label(for="question1")="Favorite color out of these options"
                 select(id="question1" name="question1")
-                    option(value="blue")="Blue"
-                    option(value="green")="Green"
-                    option(value="red")="Red"
-                    option(value="Purple")="Purple"
+                    option(disabled selected hidden)="Choose answer..."
+                    option(value="1")="Blue"
+                    option(value="2")="Green"
+                    option(value="3")="Red"
+                    option(value="4")="Purple"
             div(class="form-group")
                 label(for="question2")="Favorite type of food of these options"
                 select(id="question2" name="question2")
-                    option(value="italian")="Italian"
-                    option(value="asain")="Asain"
-                    option(value="mexican")="Mexican"
-                    option(value="nigerian")="Nigerian"
+                    option(disabled selected hidden)="Choose answer..."
+                    option(value="1")="Italian"
+                    option(value="2")="Asian"
+                    option(value="3")="Mexican"
+                    option(value="4")="Nigerian"
             div(class="form-group")
                 label(for="question3")="Favorite animal out of these options"
                 select(id="question3" name="question3")
-                    option(value="dog")="Dog"
-                    option(value="cat")="Cat"
-                    option(value="sloth")="Sloth"
-                    option(value="bird")="Bird"
+                    option(disabled selected hidden)="Choose answer..."
+                    option(value="1")="Dog"
+                    option(value="2")="Cat"
+                    option(value="3")="Sloth"
+                    option(value="4")="Bird"
             div(class="button-container" id="button-container")
                 input(class="button" type="submit" value="Create Account" id="button")

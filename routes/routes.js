@@ -21,6 +21,16 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+const questionSchema = mongoose.Schema({
+    name: String,
+    answer1: Number,
+    answer2: Number,
+    answer3: Number,
+    answer4: Number
+});
+
+const Question = mongoose.model("Question", questionSchema);
+
 const router = express.Router();
 
 router.route("/").get(
@@ -81,6 +91,12 @@ router.route("/create-account").post(
             username: req.body.username,
             password: req.body.password,
         };
+        var answers = {
+            answer1: req.body.question1,
+            answer2: req.body.question2,
+            answer3: req.body.question3
+        }
+        console.log
         createUser(userInfo).then(function(result) {
             if (!result) {
                 req.session.username = userInfo.username;
@@ -91,6 +107,9 @@ router.route("/create-account").post(
                 };
                 resp.render("create-account", model);
             }
+        });
+        saveAnswers(answers).then(function() {
+
         });
     }
 )
@@ -112,6 +131,59 @@ async function createUser(userInfo) {
             user.save();
         });
     }
+}
+
+async function saveAnswers(answers) {
+    var question1 = await Question.findOne({ name: "question1" });
+    switch (answers.answer1) {
+        case "1":
+            question1.answer1 += 1;
+            break;
+        case "2":
+            question1.answer2 += 1;
+            break;
+        case "3":
+            question1.answer3 += 1;
+            break;
+        case "4":
+            question1.answer4 += 1;
+            break;
+    }
+    question1.save();
+
+    var question2 = await Question.findOne({ name: "question2" });
+    switch (answers.answer2) {
+        case "1":
+            question2.answer1 += 1;
+            break;
+        case "2":
+            question2.answer2 += 1;
+            break;
+        case "3":
+            question2.answer3 += 1;
+            break;
+        case "4":
+            question2.answer4 += 1;
+            break;
+    }
+    question2.save();
+
+    var question3 = await Question.findOne({ name: "question3" });
+    switch (answers.answer1) {
+        case "1":
+            question3.answer1 += 1;
+            break;
+        case "2":
+            question3.answer2 += 1;
+            break;
+        case "3":
+            question3.answer3 += 1;
+            break;
+        case "4":
+            question3.answer4 += 1;
+            break;
+    }
+    question3.save();
 }
 
 module.exports = router;
