@@ -1,4 +1,13 @@
 extends layout.pug
 
+block nav
+    a(class="active" href="/")="Home"
+    a(href="/logout")="Logout"
 block content
+
     canvas(id="myChart" width="400" height="400")
+
+    h1="hello"
+    if(isAdmin)
+        p="admin"
+
