@@ -1,0 +1,26 @@
+extends layout.pug
+
+block title
+    title="Create Account"
+block content
+    div(class="container")
+        h1="Create Account"
+        form(method="POST" action="/create-account")
+            div(Class="form-group")
+                input(type="text" required id="username" autocomplete="off" name="username")
+                label(for="username" class="control-label")="Username"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="text" required id="email" autocomplete="off" name="email")
+                label(for="email" class="control-label")="Email"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="text" required id="age" autocomplete="off" name="age")
+                label(for="age" class="control-label")="Age"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="password" required id="password" autocomplete="off" name="password")
+                label(for="password" class="control-label")="Password"
+                i(class="bar")
+            div(class="button-container" id="button-container")
+                input(class="button" type="submit" value="Create Account" id="button")

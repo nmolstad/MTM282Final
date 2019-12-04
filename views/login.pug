@@ -1,0 +1,21 @@
+extends layout.pug
+
+block title
+    title="Login"
+block content
+    div(class="container")
+        h1="Login"
+        form(method="POST" action="/login")
+            div(Class="form-group")
+                input(type="text" required id="username" autocomplete="off" name="username")
+                label(for="username" class="control-label")="Username"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="password" required id="password" autocomplete="off" name="password")
+                label(for="password" class="control-label")="Password"
+                i(class="bar")
+            div(class="button-container" id="button-container")
+                input(class="button" type="submit" value="Login" id="button")
+            div(class="button-container" id="button-container")
+                a(href="/create-account")
+                    input(class="button" value="Sign up" id="signupBtn")

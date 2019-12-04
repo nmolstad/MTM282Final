@@ -12,14 +12,37 @@ mongoose.connect('mongodb+srv://express:Paf8PpfyCneqkqed@expresssite-knif3.mongo
 const Schema = mongoose.Schema;
 
 const userSchema = mongoose.Schema({
-    name: String,
-    email: String,
     username: String,
     password: String,
+    email: String,
+    age: Number,
     roles: Array
 });
+
 const User = mongoose.model("User", userSchema);
 
 const router = express.Router();
+
+router.route("/").get(
+    function(req, resp) {
+        var model = {
+            username: req.session.username
+        }
+
+        if (req.session.username) {
+            resp.render("index", model);
+        } else {
+            resp.render("login", model);
+        }
+    }
+)
+
+router.route("/create-account").get(
+    function(req, resp) {
+        resp.render("create-account");
+    }
+)
+
+
 
 module.exports = router;
