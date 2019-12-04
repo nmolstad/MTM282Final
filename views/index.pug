@@ -1,4 +1,9 @@
 extends layout.pug
 
+block nav
+    a(class="active" href="/")="Home"
+    a(href="/logout")="Logout"
 block content
     h1="hello"
+    if(isAdmin)
+        p="admin"

@@ -22,5 +22,26 @@ block content
                 input(type="password" required id="password" autocomplete="off" name="password")
                 label(for="password" class="control-label")="Password"
                 i(class="bar")
+            div(class="form-group")
+                label(for="question1")="Favorite color out of these options"
+                select(id="question1" name="question1")
+                    option(value="blue")="Blue"
+                    option(value="green")="Green"
+                    option(value="red")="Red"
+                    option(value="Purple")="Purple"
+            div(class="form-group")
+                label(for="question2")="Favorite type of food of these options"
+                select(id="question2" name="question2")
+                    option(value="italian")="Italian"
+                    option(value="asain")="Asain"
+                    option(value="mexican")="Mexican"
+                    option(value="nigerian")="Nigerian"
+            div(class="form-group")
+                label(for="question3")="Favorite animal out of these options"
+                select(id="question3" name="question3")
+                    option(value="dog")="Dog"
+                    option(value="cat")="Cat"
+                    option(value="sloth")="Sloth"
+                    option(value="bird")="Bird"
             div(class="button-container" id="button-container")
                 input(class="button" type="submit" value="Create Account" id="button")
