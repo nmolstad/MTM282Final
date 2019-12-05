@@ -1,15 +1,18 @@
 extends layout.pug
 
+
 block title
     title="Edit Profile"
+block nav
+    a(href="/")="Home"
+    if(isAdmin)
+        a(href="/admin")="Admin Page"
+    a(class="active" href="/edit-profile")="Edit Profile"
+    a(href="/logout")="Logout"
 block content
     div(class="container")
         h1="Edit Profile"
         form(method="POST" action="/edit-profile")
-            div(Class="form-group")
-                input(type="text" required id="username" autocomplete="off" name="username" value=user.username)
-                label(for="username" class="control-label")="Username"
-                i(class="bar")
             div(Class="form-group")
                 input(type="text" required id="email" autocomplete="off" name="email" value=user.email)
                 label(for="email" class="control-label")="Email"

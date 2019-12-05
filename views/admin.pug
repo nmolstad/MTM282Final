@@ -1,9 +1,12 @@
 extends layout.pug
 
+block title
+    title="Admin PAge"
 block nav
     a(href="/")="Home"
     if(isAdmin)
         a(class="active" href="/admin")="Admin Page"
+    a(href="/edit-profile")="Edit Profile"
     a(href="/logout")="Logout"
 block content
     for user in users

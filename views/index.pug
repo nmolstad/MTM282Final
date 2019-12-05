@@ -1,5 +1,7 @@
 extends layout.pug
 
+block title
+    title="Home"
 block nav
     a(class="active" href="/")="Home"
     if(isAdmin)

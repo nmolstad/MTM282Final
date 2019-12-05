@@ -109,7 +109,6 @@ router.route("/create-account").post(
             answer2: req.body.question2,
             answer3: req.body.question3
         }
-        console.log
         createUser(userInfo, answers).then(function(result) {
             if (!result) {
                 req.session.username = userInfo.username;
@@ -133,6 +132,7 @@ router.route("/admin").get(
             getAllUser().then(function(results) {
                 var model = {
                     username: req.session.username,
+                    isAdmin: req.session.isAdmin,
                     users: results
                 }
 
@@ -219,8 +219,10 @@ async function createUser(userInfo, answers) {
 }
 
 async function saveAnswers(answers) {
+    console.log(answers);
     if (answers.answer1) {
         var question1 = await Question.findOne({ name: "question1" });
+        console.log(question1);
         switch (answers.answer1) {
             case "blue":
                 question1.blue += 1;
@@ -232,14 +234,17 @@ async function saveAnswers(answers) {
                 question1.red += 1;
                 break;
             case "purple":
+                console.log(question1.purple);
                 question1.purple += 1;
                 break;
         }
+        console.log(question1);
         question1.save();
     }
 
     if (answers.answer2) {
         var question2 = await Question.findOne({ name: "question2" });
+        console.log(question2);
         switch (answers.answer2) {
             case "italian":
                 question2.italian += 1;
@@ -259,6 +264,7 @@ async function saveAnswers(answers) {
 
     if (answers.answer3) {
         var question3 = await Question.findOne({ name: "question3" });
+        console.log(question3);
         switch (answers.answer3) {
             case "dog":
                 question3.dog += 1;
@@ -278,106 +284,114 @@ async function saveAnswers(answers) {
 }
 router.route("/edit-profile").get(
     async function(req, resp) {
-        var username = req.session.username;
-        var user = await User.findOne({ username: username });
-        var model = {
-            user: user
-        };
-        resp.render("edit-profile", model);
-
+        if (req.session.username) {
+            var username = req.session.username;
+            var user = await User.findOne({ username: username });
+            var model = {
+                isAdmin: req.session.isAdmin,
+                user: user
+            };
+            resp.render("edit-profile", model);
+        } else {
+            resp.redirect("/");
+        }
     }
 );
 router.route("/edit-profile").post(
     async function(req, resp) {
-        var user = await User.findOne({username: req.session.username});
-        var oldAnswer1 = user.question1;
-        var oldAnswer2 = user.question2;
-        var oldAnswer3 = user.question3;
-        var question1 = req.body.question1;
-        var question2 = req.body.question2;
-        var question3 = req.body.question3;
+        if (req.session.username) {
+            var user = await User.findOne({ username: req.session.username });
+            var oldAnswer1 = user.question1;
+            var oldAnswer2 = user.question2;
+            var oldAnswer3 = user.question3;
+            var question1 = req.body.question1;
+            var question2 = req.body.question2;
+            var question3 = req.body.question3;
 
 
-        if(oldAnswer1 !== question1){
-            var question1db = await Question.findOne({name: question1});
+            if (oldAnswer1 !== question1) {
+                var question1db = await Question.findOne({ name: question1 });
 
-            if(oldAnswer1 === "blue"){
-                question1db.blue -=1;
-            } else if(oldAnswer1 === "green"){
-                question1db.green -=1;
-            } else if(oldAnswer1 === "red"){
-                question1db.red -=1;
-            } else if(oldAnswer1 === "purple"){
-                question1db.purple -=1;
+                if (oldAnswer1 === "blue") {
+                    question1db.blue -= 1;
+                } else if (oldAnswer1 === "green") {
+                    question1db.green -= 1;
+                } else if (oldAnswer1 === "red") {
+                    question1db.red -= 1;
+                } else if (oldAnswer1 === "purple") {
+                    question1db.purple -= 1;
+                }
+
+                if (question1 === "blue") {
+                    question1db.blue += 1;
+                } else if (question1 === "green") {
+                    question1db.green += 1;
+                } else if (question1 === "red") {
+                    question1db.red += 1;
+                } else if (question1 === "purple") {
+                    question1db.purple += 1;
+                }
+                question1db.save();
             }
 
-            if(question1 === "blue"){
-                question1db.blue +=1;
-            } else if(question1 === "green"){
-                question1db.green +=1;
-            } else if(question1 === "red"){
-                question1db.red +=1;
-            } else if(question1 === "purple"){
-                question1db.purple +=1;
-            }
-            question1db.save();
-        }
+            if (oldAnswer2 !== question2) {
+                var question2db = await Question.findOne({ name: question2 });
 
-        if(oldAnswer2 !== question2){
-            var question2db = await Question.findOne({name: question2});
+                if (oldAnswer2 === "italian") {
+                    question2db.italian -= 1;
+                } else if (oldAnswer2 === "asian") {
+                    question2db.asian -= 1;
+                } else if (oldAnswer2 === "mexican") {
+                    question2db.mexican -= 1;
+                } else if (oldAnswer2 === "moroccan") {
+                    question2db.moroccan -= 1;
+                }
 
-            if(oldAnswer2 === "italian"){
-                question2db.italian -=1;
-            } else if(oldAnswer2 === "asian"){
-                question2db.asian -=1;
-            } else if(oldAnswer2 === "mexican"){
-                question2db.mexican -=1;
-            } else if(oldAnswer2 === "moroccan"){
-                question2db.moroccan -=1;
-            }
-
-            if(question2 === "italian"){
-                question2db.italian +=1;
-            } else if(question2 === "asian"){
-                question2db.asian +=1;
-            } else if(question2 === "mexican"){
-                question2db.mexican +=1;
-            } else if(question2 === "moroccan"){
-                question2db.moroccan +=1;
-            }
-            question2db.save();
-        }
-
-        if(oldAnswer3 !== question3){
-            var question3db = await Question.findOne({name: question3});
-
-            if(oldAnswer3 === "dog"){
-                question3db.dog -=1;
-            } else if(oldAnswer3 === "cat"){
-                question3db.cat -=1;
-            } else if(oldAnswer3 === "sloth"){
-                question3db.sloth -=1;
-            } else if(oldAnswer3 === "eagle"){
-                question3db.eagle -=1;
+                if (question2 === "italian") {
+                    question2db.italian += 1;
+                } else if (question2 === "asian") {
+                    question2db.asian += 1;
+                } else if (question2 === "mexican") {
+                    question2db.mexican += 1;
+                } else if (question2 === "moroccan") {
+                    question2db.moroccan += 1;
+                }
+                question2db.save();
             }
 
-            if(question3 === "dog"){
-                question3db.dog +=1;
-            } else if(question3 === "cat"){
-                question3db.cat +=1;
-            } else if(question3 === "sloth"){
-                question3db.sloth +=1;
-            } else if(question3 === "eagle"){
-                question3db.eagle +=1;
+            if (oldAnswer3 !== question3) {
+                var question3db = await Question.findOne({ name: question3 });
+
+                if (oldAnswer3 === "dog") {
+                    question3db.dog -= 1;
+                } else if (oldAnswer3 === "cat") {
+                    question3db.cat -= 1;
+                } else if (oldAnswer3 === "sloth") {
+                    question3db.sloth -= 1;
+                } else if (oldAnswer3 === "eagle") {
+                    question3db.eagle -= 1;
+                }
+
+                if (question3 === "dog") {
+                    question3db.dog += 1;
+                } else if (question3 === "cat") {
+                    question3db.cat += 1;
+                } else if (question3 === "sloth") {
+                    question3db.sloth += 1;
+                } else if (question3 === "eagle") {
+                    question3db.eagle += 1;
+                }
+                question3db.save();
             }
-            question3db.save();
-        }
 
-        if(req.body.password === ""){
-            User.updateOne({username:req.session.username}, {$set: {username: req.body.username, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3}});
-        } else{
-            User.updateOne({username:req.session.username}, {$set: {username: req.body.username, password: req.body.password, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3}});
+            if (req.body.password === "") {
+                User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
+            } else {
+                User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
 
+            }
+        } else {
+            resp.redirect("/");
         }
     }
 );

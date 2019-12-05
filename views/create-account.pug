@@ -25,7 +25,7 @@ block content
             div(class="form-group")
                 h4="Favorite color out of these options:"
                 div(class="radio")
-                    input(type="radio" id="q1a1" name="question1" value="blue")
+                    input(type="radio" id="q1a1" name="question1" value="blue" required)
                     label(for="q1a1")="Blue" 
                 div(class="radio")
                     input(type="radio" id="q1a2" name="question1" value="green")
@@ -36,17 +36,10 @@ block content
                 div(class="radio")
                     input(type="radio" id="q1a4" name="question1" value="purple")
                     label(for="q1a4")="Purple"
-                //- label(for="question1")="Favorite color out of these options"
-                //- select(id="question1" name="question1")
-                //-     option(disabled selected hidden)="Choose answer..."
-                //-     option(value="blue")="Blue"
-                //-     option(value="green")="Green"
-                //-     option(value="red")="Red"
-                //-     option(value="purple")="Purple"
             div(class="form-group")
                 h4="Favorite type of food of these options:"
                 div(class="radio")
-                    input(type="radio" id="q2a1" name="question2" value="italian")
+                    input(type="radio" id="q2a1" name="question2" value="italian" required)
                     label(for="q2a1")="Italian" 
                 div(class="radio")
                     input(type="radio" id="q2a2" name="question2" value="asian")
@@ -60,7 +53,7 @@ block content
             div(class="form-group")
                 h4="Favorite animal out of these options:"
                 div(class="radio")
-                    input(type="radio" id="q3a1" name="question3" value="dog")
+                    input(type="radio" id="q3a1" name="question3" value="dog" required)
                     label(for="q3a1")="Dog" 
                 div(class="radio")
                     input(type="radio" id="q3a2" name="question3" value="cat")
