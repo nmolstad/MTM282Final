@@ -23,28 +23,53 @@ block content
                 label(for="password" class="control-label")="Password"
                 i(class="bar")
             div(class="form-group")
-                label(for="question1")="Favorite color out of these options"
-                select(id="question1" name="question1")
-                    option(disabled selected hidden)="Choose answer..."
-                    option(value="1")="Blue"
-                    option(value="2")="Green"
-                    option(value="3")="Red"
-                    option(value="4")="Purple"
+                h4="Favorite color out of these options"
+                div(class="radio")
+                    input(type="radio" id="q1a1" name="question1" value="blue")
+                    label(for="q1a1")="Blue" 
+                div(class="radio")
+                    input(type="radio" id="q1a2" name="question1" value="green")
+                    label(for="q1a2")="Green"
+                div(class="radio")
+                    input(type="radio" id="q1a3" name="question1" value="red")
+                    label(for="q1a3")="Red"
+                div(class="radio")
+                    input(type="radio" id="q1a4" name="question1" value="purple")
+                    label(for="q1a4")="Purple"
+                //- label(for="question1")="Favorite color out of these options"
+                //- select(id="question1" name="question1")
+                //-     option(disabled selected hidden)="Choose answer..."
+                //-     option(value="blue")="Blue"
+                //-     option(value="green")="Green"
+                //-     option(value="red")="Red"
+                //-     option(value="purple")="Purple"
             div(class="form-group")
-                label(for="question2")="Favorite type of food of these options"
-                select(id="question2" name="question2")
-                    option(disabled selected hidden)="Choose answer..."
-                    option(value="1")="Italian"
-                    option(value="2")="Asian"
-                    option(value="3")="Mexican"
-                    option(value="4")="Nigerian"
+                h4="Favorite type of food of these options"
+                div(class="radio")
+                    input(type="radio" id="q2a1" name="question2" value="italian")
+                    label(for="q2a1")="Italian" 
+                div(class="radio")
+                    input(type="radio" id="q2a2" name="question2" value="asian")
+                    label(for="q2a2")="Asian"
+                div(class="radio")
+                    input(type="radio" id="q2a3" name="question2" value="mexican")
+                    label(for="q2a3")="Mexican"
+                div(class="radio")
+                    input(type="radio" id="q2a4" name="question2" value="moroccan")
+                    label(for="q2a4")="Moroccan"
             div(class="form-group")
-                label(for="question3")="Favorite animal out of these options"
-                select(id="question3" name="question3")
-                    option(disabled selected hidden)="Choose answer..."
-                    option(value="1")="Dog"
-                    option(value="2")="Cat"
-                    option(value="3")="Sloth"
-                    option(value="4")="Bird"
+                h4="Favorite animal out of these options"
+                div(class="radio")
+                    input(type="radio" id="q3a1" name="question3" value="dog")
+                    label(for="q3a1")="Dog" 
+                div(class="radio")
+                    input(type="radio" id="q3a2" name="question3" value="cat")
+                    label(for="q3a2")="Cat"
+                div(class="radio")
+                    input(type="radio" id="q3a3" name="question3" value="sloth")
+                    label(for="q3a3")="Sloth"
+                div(class="radio")
+                    input(type="radio" id="q3a4" name="question3" value="eagle")
+                    label(for="q3a4")="Eagle"
             div(class="button-container" id="button-container")
                 input(class="button" type="submit" value="Create Account" id="button")

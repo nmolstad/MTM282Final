@@ -142,6 +142,20 @@ h1 {
     left: 0;
 }
 
+.radio {
+    display: flex;
+    margin: 10px;
+}
+
+.radio input {
+    margin: 0px;
+    width: 50px;
+}
+
+.radio label {
+    margin-top: 5px;
+}
+
 .button-container {
     height: 5rem;
 }
