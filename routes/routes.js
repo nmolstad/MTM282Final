@@ -270,8 +270,30 @@ router.route("/edit-profile").post(
             question2db.save();
         }
 
-        //TODO add question3 math stuff here
+        if(oldAnswer3 !== question3){
+            var question3db = await Question.findOne({name: question3});
 
+            if(oldAnswer3 === "dog"){
+                question3db.dog -=1;
+            } else if(oldAnswer3 === "cat"){
+                question3db.cat -=1;
+            } else if(oldAnswer3 === "sloth"){
+                question3db.sloth -=1;
+            } else if(oldAnswer3 === "eagle"){
+                question3db.eagle -=1;
+            }
+
+            if(question3 === "dog"){
+                question3db.dog +=1;
+            } else if(question3 === "cat"){
+                question3db.cat +=1;
+            } else if(question3 === "sloth"){
+                question3db.sloth +=1;
+            } else if(question3 === "eagle"){
+                question3db.eagle +=1;
+            }
+            question3db.save();
+        }
 
         if(req.body.password === ""){
             User.updateOne({username:req.session.username}, {$set: {username: req.body.username, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3}});
