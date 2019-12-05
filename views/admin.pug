@@ -1,0 +1,36 @@
+extends layout.pug
+
+block nav
+    a(href="/")="Home"
+    if(isAdmin)
+        a(class="active" href="/admin")="Admin Page"
+    a(href="/logout")="Logout"
+block content
+    for user in users
+        if(user.username != username)
+            div(class="container")
+                h4="Username: " + user.username
+                p="Email: " + user.email
+                p="Age: " + user.age
+                P="Favorite Color: " + user.answer1
+                p="Favorite Food: " + user.answer2
+                p="Favoirte Animal: " + user.answer3
+                p="Roles: " + user.roles
+                if(user.active)
+                    p="Status: Active"
+                else
+                    p="Status: Suspended"
+                div(class="dual-button")
+                    -var userAdmin = user.roles.includes("admin")
+                    div(class="button-container" id="button-container")
+                        if(userAdmin)
+                            button(class="button" onclick="updateAdminStatus(\"" + user.username + "\")")="Demote"
+                        else
+                            button(class="button" onclick="updateAdminStatus(\"" + user.username + "\")")="Promote"
+                    div(class="filler")
+                        p="`"
+                    div(class="button-container" id="button-container")
+                        if(user.active)
+                            button(class="button" onclick="updateStatus(\"" + user.username + "\")")="Suspend"
+                        else
+                            button(class="button" onclick="updateStatus(\"" + user.username + "\")")="Activate"

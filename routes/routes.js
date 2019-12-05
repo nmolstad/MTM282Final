@@ -41,8 +41,11 @@ router.route("/").get(
     function(req, resp) {
         var model = {
             username: req.session.username,
-            isAdmin: req.session.isAdmin
+            isAdmin: req.session.isAdmin,
+            error: req.session.error
         }
+
+        req.session.error = null;
 
         if (req.session.username) {
             resp.render("index", model);
@@ -62,10 +65,16 @@ router.route("/login").post(
         var user = await User.findOne({ username: credentials.username });
         if (user) {
             const match = await bcrypt.compare(credentials.password, user.password);
-            if (match) {
+            if (match && user.active) {
                 req.session.username = credentials.username;
                 req.session.isAdmin = user.roles.includes('admin');
+            } else if (match && !user.active) {
+                req.session.error = "This account is suspended";
+            } else {
+                req.session.error = "Invalid username or passsword.";
             }
+        } else {
+            req.session.error = "Invalid username or passsword.";
         }
         resp.redirect("/");
     }
@@ -118,6 +127,74 @@ router.route("/create-account").post(
     }
 )
 
+router.route("/admin").get(
+    function(req, resp) {
+        if (req.session.isAdmin) {
+            getAllUser().then(function(results) {
+                var model = {
+                    username: req.session.username,
+                    users: results
+                }
+
+                resp.render("admin", model);
+            });
+        } else {
+            req.session.error = "You do not have permission to access this page.";
+
+            resp.redirect("/");
+        }
+    });
+
+router.route("/data").get(
+    async function(req, resp) {
+        var questions = await Question.find();
+
+        resp.send(questions);
+    });
+
+router.route("/admin-status/:username").post(
+    async function(req, resp) {
+        if (req.session.isAdmin) {
+            var user = await User.findOne({ username: req.params.username });
+
+            if (user) {
+                if (user.roles.includes("admin")) {
+                    await User.updateOne({ username: user.username }, { $pull: { roles: "admin" } });
+                } else {
+                    console.log("gets here");
+                    await User.updateOne({ username: user.username }, { $push: { roles: "admin" } });
+                }
+            }
+            resp.redirect("/admin");
+        } else {
+            resp.redirect("/");
+        }
+    });
+
+router.route("/status/:username").post(
+    async function(req, resp) {
+        if (req.session.isAdmin) {
+            var user = await User.findOne({ username: req.params.username });
+
+            if (user) {
+                if (user.active) {
+                    await User.updateOne({ username: user.username }, { $set: { active: false } });
+                } else {
+                    await User.updateOne({ username: user.username }, { $set: { active: true } });
+                }
+            }
+            resp.redirect("/admin");
+        } else {
+            resp.redirect("/");
+        }
+    });
+
+async function getAllUser() {
+    var users = await User.find();
+
+    return users;
+}
+
 async function createUser(userInfo, answers) {
     var user = await User.findOne({ username: userInfo.username });
     if (user) {
@@ -130,6 +207,7 @@ async function createUser(userInfo, answers) {
                 username: userInfo.username,
                 password: result,
                 roles: ['user'],
+                active: true,
                 answer1: answers.answer1,
                 answer2: answers.answer2,
                 answer3: answers.answer3

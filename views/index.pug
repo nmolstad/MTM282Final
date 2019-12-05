@@ -2,13 +2,17 @@ extends layout.pug
 
 block nav
     a(class="active" href="/")="Home"
+    if(isAdmin)
+        a(href="/admin")="Admin Page"
     a(href="/logout")="Logout"
 block content
-
     div(class="container")
-        canvas(id="myChart")
-
-    h1="hello"
-    if(isAdmin)
-        p="admin"
+        h1="Favorite Colors"
+        canvas(id="q1Chart")
+    div(class="container")
+        h1="Favorite Types of Food"
+        canvas(id="q2Chart")
+    div(class="container")
+        h1="Favorite Animals"
+        canvas(id="q3Chart")
 

@@ -206,6 +206,19 @@ h1 {
     border-radius: 4px;
 }
 
+.dual-button {
+    display: inline-flex;
+}
+
+.dual-button button {
+    margin: 0px 20%;
+}
+
+.filler {
+    margin: 0px 20%;
+    visibility: hidden;
+}
+
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
