@@ -1,0 +1,124 @@
+extends layout.pug
+
+block title
+    title="Edit Profile"
+block content
+    div(class="container")
+        h1="Edit Profile"
+        form(method="POST" action="/edit-profile")
+            div(Class="form-group")
+                input(type="text" required id="username" autocomplete="off" name="username" value=user.username)
+                label(for="username" class="control-label")="Username"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="text" required id="email" autocomplete="off" name="email" value=user.email)
+                label(for="email" class="control-label")="Email"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="number" required id="age" autocomplete="off" name="age" value=user.age)
+                label(for="age" class="control-label")="Age"
+                i(class="bar")
+            div(Class="form-group")
+                input(type="password" id="password" autocomplete="off" name="password")
+                label(for="password" class="control-label")="Password"
+                i(class="bar")
+            div(class="form-group")
+                h4="Favorite color out of these options"
+                div(class="radio")
+                    if user.answer1 === "blue"
+                        input(type="radio" id="q1a1" name="question1" value="blue" checked=true)
+                        label(for="q1a1")="Blue"
+                    else
+                        input(type="radio" id="q1a1" name="question1" value="blue")
+                        label(for="q1a1")="Blue"
+                div(class="radio")
+                    if user.answer1 ==="green"
+                        input(type="radio" id="q1a2" name="question1" value="green" checked=true)
+                        label(for="q1a2")="Green"
+                    else
+                        input(type="radio" id="q1a2" name="question1" value="green")
+                        label(for="q1a2")="Green"
+                div(class="radio")
+                    if user.answer1 === "red"
+                        input(type="radio" id="q1a3" name="question1" value="red" checked=true)
+                        label(for="q1a3")="Red"
+                    else
+                        input(type="radio" id="q1a3" name="question1" value="red")
+                        label(for="q1a3")="Red"
+                div(class="radio")
+                    if user.answer1 === "purple"
+                        input(type="radio" id="q1a4" name="question1" value="purple" checked=true)
+                        label(for="q1a4")="Purple"
+                    else
+                        input(type="radio" id="q1a4" name="question1" value="purple")
+                        label(for="q1a4")="Purple"
+                //- label(for="question1")="Favorite color out of these options"
+                //- select(id="question1" name="question1")
+                //-     option(disabled selected hidden)="Choose answer..."
+                //-     option(value="blue")="Blue"
+                //-     option(value="green")="Green"
+                //-     option(value="red")="Red"
+                //-     option(value="purple")="Purple"
+            div(class="form-group")
+                h4="Favorite type of food of these options"
+                div(class="radio")
+                    if user.answer2 === "italian"
+                        input(type="radio" id="q2a1" name="question2" value="italian" checked=true)
+                        label(for="q2a1")="Italian"
+                    else
+                        input(type="radio" id="q2a1" name="question2" value="italian")
+                        label(for="q2a1")="Italian"
+                div(class="radio")
+                    if user.answer2 === "asian"
+                        input(type="radio" id="q2a2" name="question2" value="asian" checked=true)
+                        label(for="q2a2")="Asian"
+                    else
+                        input(type="radio" id="q2a2" name="question2" value="asian")
+                        label(for="q2a2")="Asian"
+                div(class="radio")
+                    if user.answer2 === "mexican"
+                        input(type="radio" id="q2a3" name="question2" value="mexican" checked=true)
+                        label(for="q2a3")="Mexican"
+                    else
+                        input(type="radio" id="q2a3" name="question2" value="mexican")
+                        label(for="q2a3")="Mexican"
+                div(class="radio")
+                    if user.answer2 === "moroccan"
+                        input(type="radio" id="q2a4" name="question2" value="moroccan" checked=true)
+                        label(for="q2a4")="Moroccan"
+                    else
+                        input(type="radio" id="q2a4" name="question2" value="moroccan")
+                        label(for="q2a4")="Moroccan"
+            div(class="form-group")
+                h4="Favorite animal out of these options"
+                div(class="radio")
+                    if user.answer3 ==="dog"
+                        input(type="radio" id="q3a1" name="question3" value="dog" checked=true)
+                        label(for="q3a1")="Dog"
+                    else
+                        input(type="radio" id="q3a1" name="question3" value="dog")
+                        label(for="q3a1")="Dog"
+                div(class="radio")
+                    if user.answer3 === "cat"
+                        input(type="radio" id="q3a2" name="question3" value="cat" checked=true)
+                        label(for="q3a2")="Cat"
+                    else
+                        input(type="radio" id="q3a2" name="question3" value="cat")
+                        label(for="q3a2")="Cat"
+                div(class="radio")
+                    if user.answer3 === "sloth"
+                        input(type="radio" id="q3a3" name="question3" value="sloth" checked=true)
+                        label(for="q3a3")="Sloth"
+                    else
+                        input(type="radio" id="q3a3" name="question3" value="sloth")
+                        label(for="q3a3")="Sloth"
+                div(class="radio")
+                    if user.answer3 === "eagle"
+                        input(type="radio" id="q3a4" name="question3" value="eagle" checked=true)
+                        label(for="q3a4")="Eagle"
+                    else
+                        input(type="radio" id="q3a4" name="question3" value="eagle")
+                        label(for="q3a4")="Eagle"
+            div(class="button-container" id="button-container")
+            input(class="button" type="submit" value="Save Changes" id="button")
+
