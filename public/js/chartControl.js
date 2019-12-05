@@ -103,4 +103,4 @@ window.onload = async function() {
             }
         }
     });
-}
+};
