@@ -213,44 +213,40 @@ async function createUser(userInfo, answers) {
 }
 
 async function saveAnswers(answers) {
-    console.log(answers);
     if (answers.answer1) {
         var question1 = await Question.findOne({ name: "question1" });
-        console.log(question1);
         switch (answers.answer1) {
             case "blue":
-                question1.blue += 1;
+                console.log(question1.answer1);
+                question1.answer1 += 1;
                 break;
             case "green":
-                question1.green += 1;
+                question1.answer2 += 1;
                 break;
             case "red":
-                question1.red += 1;
+                question1.answer3 += 1;
                 break;
             case "purple":
-                console.log(question1.purple);
-                question1.purple += 1;
+                question1.answer4 += 1;
                 break;
         }
-        console.log(question1);
         question1.save();
     }
 
     if (answers.answer2) {
         var question2 = await Question.findOne({ name: "question2" });
-        console.log(question2);
         switch (answers.answer2) {
             case "italian":
-                question2.italian += 1;
+                question2.answer1 += 1;
                 break;
             case "asian":
-                question2.asian += 1;
+                question2.answer2 += 1;
                 break;
             case "mexican":
-                question2.mexican += 1;
+                question2.answer3 += 1;
                 break;
             case "moroccan":
-                question2.moroccan += 1;
+                question2.answer4 += 1;
                 break;
         }
         question2.save();
@@ -258,19 +254,18 @@ async function saveAnswers(answers) {
 
     if (answers.answer3) {
         var question3 = await Question.findOne({ name: "question3" });
-        console.log(question3);
         switch (answers.answer3) {
             case "dog":
-                question3.dog += 1;
+                question3.answer1 += 1;
                 break;
             case "cat":
-                question3.cat += 1;
+                question3.answer2 += 1;
                 break;
             case "sloth":
-                question3.sloth += 1;
+                question3.answer3 += 1;
                 break;
             case "eagle":
-                question3.eagle += 1;
+                question3.answer4 += 1;
                 break;
         }
         question3.save();
@@ -295,9 +290,10 @@ router.route("/edit-profile").post(
     async function(req, resp) {
         if (req.session.username) {
             var user = await User.findOne({ username: req.session.username });
-            var oldAnswer1 = user.question1;
-            var oldAnswer2 = user.question2;
-            var oldAnswer3 = user.question3;
+            console.log(user);
+            var oldAnswer1 = user.answer1;
+            var oldAnswer2 = user.answer2;
+            var oldAnswer3 = user.answer3;
             var question1 = req.body.question1;
             var question2 = req.body.question2;
             var question3 = req.body.question3;
@@ -378,9 +374,10 @@ router.route("/edit-profile").post(
             }
 
             if (req.body.password === "") {
-                User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
+                console.log(req.session.username);
+                User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
             } else {
-                User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
+                User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
             }
 
             resp.redirect("/");
