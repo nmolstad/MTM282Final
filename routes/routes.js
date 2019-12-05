@@ -165,9 +165,6 @@ router.route("/admin-status/:username").post(
                     await User.updateOne({ username: user.username }, { $push: { roles: "admin" } });
                 }
             }
-            resp.redirect("/admin");
-        } else {
-            resp.redirect("/");
         }
     });
 
@@ -183,9 +180,6 @@ router.route("/status/:username").post(
                     await User.updateOne({ username: user.username }, { $set: { active: true } });
                 }
             }
-            resp.redirect("/admin");
-        } else {
-            resp.redirect("/");
         }
     });
 
@@ -308,9 +302,8 @@ router.route("/edit-profile").post(
             var question2 = req.body.question2;
             var question3 = req.body.question3;
 
-
             if (oldAnswer1 !== question1) {
-                var question1db = await Question.findOne({ name: question1 });
+                var question1db = await Question.findOne({ name: "question1" });
 
                 if (oldAnswer1 === "blue") {
                     question1db.blue -= 1;
@@ -335,7 +328,7 @@ router.route("/edit-profile").post(
             }
 
             if (oldAnswer2 !== question2) {
-                var question2db = await Question.findOne({ name: question2 });
+                var question2db = await Question.findOne({ name: "question2" });
 
                 if (oldAnswer2 === "italian") {
                     question2db.italian -= 1;
@@ -360,7 +353,7 @@ router.route("/edit-profile").post(
             }
 
             if (oldAnswer3 !== question3) {
-                var question3db = await Question.findOne({ name: question3 });
+                var question3db = await Question.findOne({ name: "question3" });
 
                 if (oldAnswer3 === "dog") {
                     question3db.dog -= 1;
@@ -388,8 +381,9 @@ router.route("/edit-profile").post(
                 User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
             } else {
                 User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, question1: question1, question2: question2, question3: question3 } });
-
             }
+
+            resp.redirect("/");
         } else {
             resp.redirect("/");
         }
