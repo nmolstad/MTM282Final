@@ -291,6 +291,9 @@ router.route("/edit-profile").post(
         if (req.session.username) {
             var user = await User.findOne({ username: req.session.username });
             console.log(user);
+            var newAge = req.body.age;
+            var newEmail = req.body.email;
+            var newPassword = req.body.password;
             var oldAnswer1 = user.answer1;
             var oldAnswer2 = user.answer2;
             var oldAnswer3 = user.answer3;
@@ -375,9 +378,25 @@ router.route("/edit-profile").post(
 
             if (req.body.password === "") {
                 console.log(req.session.username);
-                User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
+                // User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
+                user.answer1 = question1;
+                user.answer2 = question2;
+                user.answer3 = question3;
+                user.age = newAge;
+                user.email = newEmail;
+
+                user.save();
             } else {
-                User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
+                // User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
+                user.answer1 = question1;
+                user.answer2 = question2;
+                user.answer3 = question3;
+                user.age = newAge;
+                user.email = newEmail;
+                //TODO Salt and hash this bad boy
+                user.password =
+
+                user.save();
             }
 
             resp.redirect("/");
