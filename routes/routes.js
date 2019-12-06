@@ -294,6 +294,7 @@ router.route("/edit-profile").post(
             var newAge = req.body.age;
             var newEmail = req.body.email;
             var newPassword = req.body.password;
+
             var oldAnswer1 = user.answer1;
             var oldAnswer2 = user.answer2;
             var oldAnswer3 = user.answer3;
@@ -386,6 +387,7 @@ router.route("/edit-profile").post(
                 user.email = newEmail;
 
                 user.save();
+
             } else {
                 // User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
                 user.answer1 = question1;

@@ -9,7 +9,7 @@ window.onload = async function() {
             labels: ['Blue', 'Green', 'Red', 'Purple'],
             datasets: [{
                 label: '# of Votes',
-                data: [questionsParsed[0].blue, questionsParsed[0].green, questionsParsed[0].red, questionsParsed[0].purple],
+                data: [questionsParsed[0].answer1, questionsParsed[0].answer2, questionsParsed[0].answer3, questionsParsed[0].answer4],
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(0, 255, 0, 0.2)',
@@ -43,7 +43,7 @@ window.onload = async function() {
             labels: ['Italian', 'Asian', 'Mexican', 'Moroccan'],
             datasets: [{
                 label: '# of Votes',
-                data: [questionsParsed[1].italian, questionsParsed[1].asian, questionsParsed[1].mexican, questionsParsed[1].moroccan],
+                data: [questionsParsed[1].answer1, questionsParsed[1].answer2, questionsParsed[1].answer3, questionsParsed[1].answer4],
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(0, 255, 0, 0.2)',
@@ -77,7 +77,7 @@ window.onload = async function() {
             labels: ['Dog', 'Cat', 'Sloth', 'Eagle'],
             datasets: [{
                 label: '# of Votes',
-                data: [questionsParsed[2].dog, questionsParsed[2].cat, questionsParsed[2].sloth, questionsParsed[2].eagle],
+                data: [questionsParsed[2].answer1, questionsParsed[2].answer2, questionsParsed[2].answer3, questionsParsed[2].answer4],
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(0, 255, 0, 0.2)',
