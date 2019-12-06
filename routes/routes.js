@@ -302,23 +302,23 @@ router.route("/edit-profile").post(
                 var question1db = await Question.findOne({ name: "question1" });
 
                 if (oldAnswer1 === "blue") {
-                    question1db.blue -= 1;
+                    question1db.answer1 -= 1;
                 } else if (oldAnswer1 === "green") {
-                    question1db.green -= 1;
+                    question1db.answer2 -= 1;
                 } else if (oldAnswer1 === "red") {
-                    question1db.red -= 1;
+                    question1db.answer3 -= 1;
                 } else if (oldAnswer1 === "purple") {
-                    question1db.purple -= 1;
+                    question1db.answer4 -= 1;
                 }
 
                 if (question1 === "blue") {
-                    question1db.blue += 1;
+                    question1db.answer1 += 1;
                 } else if (question1 === "green") {
-                    question1db.green += 1;
+                    question1db.answer2 += 1;
                 } else if (question1 === "red") {
-                    question1db.red += 1;
+                    question1db.answer3 += 1;
                 } else if (question1 === "purple") {
-                    question1db.purple += 1;
+                    question1db.answer4 += 1;
                 }
                 question1db.save();
             }
@@ -327,23 +327,23 @@ router.route("/edit-profile").post(
                 var question2db = await Question.findOne({ name: "question2" });
 
                 if (oldAnswer2 === "italian") {
-                    question2db.italian -= 1;
+                    question2db.answer1 -= 1;
                 } else if (oldAnswer2 === "asian") {
-                    question2db.asian -= 1;
+                    question2db.answer2 -= 1;
                 } else if (oldAnswer2 === "mexican") {
-                    question2db.mexican -= 1;
+                    question2db.answer3 -= 1;
                 } else if (oldAnswer2 === "moroccan") {
-                    question2db.moroccan -= 1;
+                    question2db.answer4 -= 1;
                 }
 
                 if (question2 === "italian") {
-                    question2db.italian += 1;
+                    question2db.answer1 += 1;
                 } else if (question2 === "asian") {
-                    question2db.asian += 1;
+                    question2db.answer2 += 1;
                 } else if (question2 === "mexican") {
-                    question2db.mexican += 1;
+                    question2db.answer3 += 1;
                 } else if (question2 === "moroccan") {
-                    question2db.moroccan += 1;
+                    question2db.answer4 += 1;
                 }
                 question2db.save();
             }
@@ -352,23 +352,23 @@ router.route("/edit-profile").post(
                 var question3db = await Question.findOne({ name: "question3" });
 
                 if (oldAnswer3 === "dog") {
-                    question3db.dog -= 1;
+                    question3db.answer1 -= 1;
                 } else if (oldAnswer3 === "cat") {
-                    question3db.cat -= 1;
+                    question3db.answer2 -= 1;
                 } else if (oldAnswer3 === "sloth") {
-                    question3db.sloth -= 1;
+                    question3db.answer3 -= 1;
                 } else if (oldAnswer3 === "eagle") {
-                    question3db.eagle -= 1;
+                    question3db.answer4 -= 1;
                 }
 
                 if (question3 === "dog") {
-                    question3db.dog += 1;
+                    question3db.answer1 += 1;
                 } else if (question3 === "cat") {
-                    question3db.cat += 1;
+                    question3db.answer2 += 1;
                 } else if (question3 === "sloth") {
-                    question3db.sloth += 1;
+                    question3db.answer3 += 1;
                 } else if (question3 === "eagle") {
-                    question3db.eagle += 1;
+                    question3db.answer4 += 1;
                 }
                 question3db.save();
             }
