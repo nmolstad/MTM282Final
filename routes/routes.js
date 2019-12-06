@@ -290,7 +290,6 @@ router.route("/edit-profile").post(
     async function(req, resp) {
         if (req.session.username) {
             var user = await User.findOne({ username: req.session.username });
-            console.log(user);
             var oldAnswer1 = user.answer1;
             var oldAnswer2 = user.answer2;
             var oldAnswer3 = user.answer3;
@@ -374,7 +373,6 @@ router.route("/edit-profile").post(
             }
 
             if (req.body.password === "") {
-                console.log(req.session.username);
                 User.updateOne({ username: req.session.username }, { $set: { email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
             } else {
                 User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
