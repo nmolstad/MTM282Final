@@ -396,9 +396,11 @@ router.route("/edit-profile").post(
                 user.age = newAge;
                 user.email = newEmail;
                 //TODO Salt and hash this bad boy
-                user.password =
+                bcrypt.hash(newPassword, saltRounds, function(err, result) {
+                    user.password = result
 
-                user.save();
+                    user.save();
+                });
             }
 
             resp.redirect("/");
