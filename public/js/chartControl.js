@@ -25,15 +25,6 @@ window.onload = async function() {
                 borderWidth: 1
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
     });
 
     var q2ctx = document.getElementById('q2Chart').getContext('2d');
@@ -59,15 +50,6 @@ window.onload = async function() {
                 borderWidth: 1
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
     });
 
     var q3ctx = document.getElementById('q3Chart').getContext('2d');
@@ -93,14 +75,5 @@ window.onload = async function() {
                 borderWidth: 1
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
     });
 };

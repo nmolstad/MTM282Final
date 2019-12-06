@@ -161,11 +161,11 @@ router.route("/admin-status/:username").post(
                 if (user.roles.includes("admin")) {
                     await User.updateOne({ username: user.username }, { $pull: { roles: "admin" } });
                 } else {
-                    console.log("gets here");
                     await User.updateOne({ username: user.username }, { $push: { roles: "admin" } });
                 }
             }
         }
+        resp.send();
     });
 
 router.route("/status/:username").post(
@@ -181,6 +181,7 @@ router.route("/status/:username").post(
                 }
             }
         }
+        resp.send();
     });
 
 async function getAllUser() {
@@ -230,7 +231,7 @@ async function saveAnswers(answers) {
                 question1.answer4 += 1;
                 break;
         }
-        question1.save();
+        await question1.save();
     }
 
     if (answers.answer2) {
@@ -249,7 +250,7 @@ async function saveAnswers(answers) {
                 question2.answer4 += 1;
                 break;
         }
-        question2.save();
+        await question2.save();
     }
 
     if (answers.answer3) {
@@ -268,7 +269,7 @@ async function saveAnswers(answers) {
                 question3.answer4 += 1;
                 break;
         }
-        question3.save();
+        await question3.save();
     }
 }
 router.route("/edit-profile").get(
@@ -324,7 +325,7 @@ router.route("/edit-profile").post(
                 } else if (question1 === "purple") {
                     question1db.answer4 += 1;
                 }
-                question1db.save();
+                await question1db.save();
             }
 
             if (oldAnswer2 !== question2) {
@@ -349,7 +350,7 @@ router.route("/edit-profile").post(
                 } else if (question2 === "moroccan") {
                     question2db.answer4 += 1;
                 }
-                question2db.save();
+                await question2db.save();
             }
 
             if (oldAnswer3 !== question3) {
@@ -374,7 +375,7 @@ router.route("/edit-profile").post(
                 } else if (question3 === "eagle") {
                     question3db.answer4 += 1;
                 }
-                question3db.save();
+                await question3db.save();
             }
 
             if (req.body.password === "") {
@@ -386,7 +387,7 @@ router.route("/edit-profile").post(
                 user.age = newAge;
                 user.email = newEmail;
 
-                user.save();
+                await user.save();
 
             } else {
                 // User.updateOne({ username: req.session.username }, { $set: { password: req.body.password, email: req.body.email, age: req.body.age, answer1: question1, answer2: question2, answer3: question3 } });
@@ -396,10 +397,10 @@ router.route("/edit-profile").post(
                 user.age = newAge;
                 user.email = newEmail;
                 //TODO Salt and hash this bad boy
-                bcrypt.hash(newPassword, saltRounds, function(err, result) {
+                bcrypt.hash(newPassword, saltRounds, async function(err, result) {
                     user.password = result
 
-                    user.save();
+                    await user.save();
                 });
             }
 
